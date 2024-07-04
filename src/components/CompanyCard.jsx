@@ -5,6 +5,7 @@ const noLogo =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png";
 
 const CompanyCard = ({ cmp }) => {
+  console.log(cmp);
   return (
     <div className='w-full h-16 flex gap-4 items-center justify-between bg-white shadow-md rounded'>
       <div className='w-3/4 md:w-2/4 flex gap-4 items-center'>

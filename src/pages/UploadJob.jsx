@@ -32,7 +32,7 @@ const UploadJob = () => {
   const onSubmit = async (data) => {
     console.log(data);
 
-    // console.log(user?.profileUrl);
+    console.log(user?.profileUrl);
     if (
       // !user?.profileUrl ||
       !user?.about ||
