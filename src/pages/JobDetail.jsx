@@ -36,21 +36,18 @@ const ApplyForm = ({ open, setOpen }) => {
       const uri = profileImage && (await handleFileUpload(profileImage));
 
       const newData = uri ? { ...data, profileUrl: uri } : data;
-      console.log(newData);
       const res = await apiRequest({
         url: `/users/job-apply/${id}`,
         token: user?.token,
         data: newData,
         method: "PUT",
       });
-      console.log(res);
       if (res?.status === "success") {
         const newData = { token: res?.token, ...res?.user };
         dispatch(Login(newData));
         localStorage.setItem("userInfo", JSON.stringify(res));
       }
       setIsSubmitting(false);
-      console.log(res);
       closeModal();
     } catch (error) {
       setIsSubmitting(false);

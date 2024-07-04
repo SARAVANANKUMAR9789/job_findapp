@@ -30,8 +30,6 @@ const JobApplydetails = ({ ApplyForm, setApplyForm }) => {
       });
 
       setData(res?.data);
-      console.log(res);
-      console.log(id);
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -177,7 +175,6 @@ const CompnayForm = ({ open, setOpen }) => {
         method: "PUT",
       });
       setIsLoading(false);
-      console.log(res);
       if (res.status === "failed") {
         setErrMsg({ ...res });
       } else {

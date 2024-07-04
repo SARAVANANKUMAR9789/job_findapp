@@ -34,8 +34,6 @@ const Applications = () => {
       });
 
       setData(res?.data);
-      console.log(res);
-      console.log(id);
       setIsFetching(false);
     } catch (error) {
       console.log(error);

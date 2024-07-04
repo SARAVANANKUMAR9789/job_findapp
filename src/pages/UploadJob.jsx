@@ -30,9 +30,6 @@ const UploadJob = () => {
   const [recentPost, setRecentPost] = useState([]);
 
   const onSubmit = async (data) => {
-    console.log(data);
-
-    console.log(user?.profileUrl);
     if (
       // !user?.profileUrl ||
       !user?.about ||

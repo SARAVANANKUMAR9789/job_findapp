@@ -1,6 +1,6 @@
 import axios from "axios";
-const API_URL = "http://localhost:8800/api-v1";
-// const API_URL = "https://job-findapp.onrender.com/api-v1";
+// const API_URL = "http://localhost:8800/api-v1";
+const API_URL = "https://job-findapp.onrender.com/api-v1";
 
 export const API = axios.create({
   baseURL: API_URL,
@@ -8,7 +8,6 @@ export const API = axios.create({
 });
 
 export const apiRequest = async ({ url, token, data, method }) => {
-  console.log(url, token, data, method);
   try {
     const result = await API(url, {
       method: method || "GET",
@@ -28,7 +27,6 @@ export const apiRequest = async ({ url, token, data, method }) => {
 };
 
 export const handleFileUpload = async (uploadFile) => {
-  console.log("Uploading file:", uploadFile); // Debugging log
   const data = new FormData();
   data.append("file", uploadFile);
   data.append("upload_preset","rvf6eeho");
@@ -39,7 +37,6 @@ export const handleFileUpload = async (uploadFile) => {
       `https://api.cloudinary.com/v1_1/daqatvrwp/image/upload/`,
       data
     );
-    console.log("Upload successful:", response.data); // Debugging log
     return response.data.secure_url;
   } catch (error) {
     console.error("Error uploading file:", error.response ? error.response.data : error.message);

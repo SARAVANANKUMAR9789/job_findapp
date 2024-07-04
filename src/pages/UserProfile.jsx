@@ -37,10 +37,8 @@ const UserForm = ({ open, setOpen }) => {
         data: newData,
         method: "PUT",
       });
-      console.log(res);
       if (res) {
         const newData = { token: user?.token, ...res?.user };
-        console.log(newData);
         dispatch(Login(newData));
         localStorage.setItem("userInfo", JSON.stringify(newData));
         closeModal();
