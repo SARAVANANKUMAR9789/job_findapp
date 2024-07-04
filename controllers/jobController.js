@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import Jobs from "../models/jobsModels.js";
 import Companies from "../models/companiesModel.js";
+import Jobs from "../models/jobsModels.js";
 
 export const createJob = async (req, res, next) => {
   try {
@@ -56,7 +56,7 @@ export const createJob = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: "Job Posted SUccessfully",
+      message: "Job Posted Successfully",
       job,
     });
   } catch (error) {
