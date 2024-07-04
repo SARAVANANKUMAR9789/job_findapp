@@ -48,18 +48,15 @@ export const addApplicationToUser = async (user, userId, jobId) => {
 
 export const addApplicationToJobs = async (userId, jobId) => {
   let job = await Jobs.findOne({ _id: jobId });
-  console.log(job, "job");
   
   if (!job?.application?.includes(userId)) {
     job.application.push(userId);
   } else {
     job.application.push(userId)= [userId];
   }
-  console.log(job, "result");
   const jobData = await Jobs.findByIdAndUpdate(jobId, job, {
     new: true,
   });
-  console.log(jobData, "jobData");
 };
 
 export const getApply = async (req, res, next) => {
@@ -99,7 +96,6 @@ export const getApplycompanydetails = async (req, res, next) => {
   try {
     const id = req.params.id;
     const company = await Companies.findById(id);
-    console.log(id);
 
     if (!company) {
       return res.status(404).send({
@@ -122,9 +118,6 @@ export const getApplycompanydetails = async (req, res, next) => {
           return await Users.findById(userId.toString());
         })
     );
-    console.log(jobResults);
-    console.log(users);
-
     res.status(200).json({
       success: true,
       data: users,
