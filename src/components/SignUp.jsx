@@ -14,6 +14,7 @@ const SignUp = ({ open, setOpen }) => {
 
   const [isRegister, setIsRegister] = useState(true);
   const [accountType, setAccountType] = useState("seeker");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
   const {
@@ -31,7 +32,7 @@ const SignUp = ({ open, setOpen }) => {
 
   const onSubmit = async (data) => {
     let URL = null;
-    // setIsLoading(true);
+    setIsLoading(true);
 
     if (isRegister) {
       if (accountType === "seeker") {
@@ -69,39 +70,39 @@ const SignUp = ({ open, setOpen }) => {
   return (
     <>
       <Transition appear show={open || false}>
-        <Dialog as='div' className='relative z-10 ' onClose={closeModal}>
+        <Dialog as="div" className="relative z-10 " onClose={closeModal}>
           <Transition.Child
             as={Fragment}
-            enter='ease-out duration-300'
-            enterFrom='opacity-0'
-            enterTo='opacity-100'
-            leave='ease-in duration-200'
-            leaveFrom='opacity-100'
-            leaveTo='opacity-0'
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
-            <div className='fixed inset-0 bg-black bg-opacity-25' />
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className='fixed inset-0 overflow-y-auto '>
-            <div className='flex min-h-full items-center justify-center p-4 text-center '>
+          <div className="fixed inset-0 overflow-y-auto ">
+            <div className="flex min-h-full items-center justify-center p-4 text-center ">
               <Transition.Child
                 as={Fragment}
-                enter='ease-out duration-300'
-                enterFrom='opacity-0 scale-95'
-                enterTo='opacity-100 scale-100'
-                leave='ease-in duration-200'
-                leaveFrom='opacity-100 scale-100'
-                leaveTo='opacity-0 scale-95'
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className='w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all '>
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all ">
                   <Dialog.Title
-                    as='h3'
-                    className='text-xl font-semibold lwading-6 text-gray-900'
+                    as="h3"
+                    className="text-xl font-semibold lwading-6 text-gray-900"
                   >
                     {isRegister ? "Create Account" : "Account Sign In"}
                   </Dialog.Title>
 
-                  <div className='w-full flex items-center justify-center py-4 '>
+                  <div className="w-full flex items-center justify-center py-4 ">
                     <button
                       className={`flex-1 px-4 py-2 rounded text-sm outline-none ${
                         accountType === "seeker"
@@ -125,14 +126,14 @@ const SignUp = ({ open, setOpen }) => {
                   </div>
 
                   <form
-                    className='w-full flex flex-col gap-5'
+                    className="w-full flex flex-col gap-5"
                     onSubmit={handleSubmit(onSubmit)}
                   >
                     <TextInput
-                      name='email'
-                      label='Email Address'
-                      placeholder='email@example.com'
-                      type='email'
+                      name="email"
+                      label="Email Address"
+                      placeholder="email@example.com"
+                      type="email"
                       register={register("email", {
                         required: "Email Address is required!",
                       })}
@@ -140,7 +141,7 @@ const SignUp = ({ open, setOpen }) => {
                     />
 
                     {isRegister && (
-                      <div className='w-full flex gap-1 md:gap-2'>
+                      <div className="w-full flex gap-1 md:gap-2">
                         <div
                           className={`${
                             accountType === "seeker" ? "w-1/2" : "w-full"
@@ -160,7 +161,7 @@ const SignUp = ({ open, setOpen }) => {
                                 ? "eg. James"
                                 : "Comapy name"
                             }
-                            type='text'
+                            type="text"
                             register={register(
                               accountType === "seeker" ? "firstName" : "name",
                               {
@@ -183,12 +184,12 @@ const SignUp = ({ open, setOpen }) => {
                         </div>
 
                         {accountType === "seeker" && isRegister && (
-                          <div className='w-1/2'>
+                          <div className="w-1/2">
                             <TextInput
-                              name='lastName'
-                              label='Last Name'
-                              placeholder='Wagonner'
-                              type='text'
+                              name="lastName"
+                              label="Last Name"
+                              placeholder="Wagonner"
+                              type="text"
                               register={register("lastName", {
                                 required: "Last Name is required",
                               })}
@@ -201,13 +202,13 @@ const SignUp = ({ open, setOpen }) => {
                       </div>
                     )}
 
-                    <div className='w-full flex gap-1 md:gap-2'>
+                    <div className="w-full flex gap-1 md:gap-2">
                       <div className={`${isRegister ? "w-1/2" : "w-full"}`}>
                         <TextInput
-                          name='password'
-                          label='Password'
-                          placeholder='Password'
-                          type='password'
+                          name="password"
+                          label="Password"
+                          placeholder="Password"
+                          type="password"
                           register={register("password", {
                             required: "Password is required!",
                           })}
@@ -218,11 +219,11 @@ const SignUp = ({ open, setOpen }) => {
                       </div>
 
                       {isRegister && (
-                        <div className='w-1/2'>
+                        <div className="w-1/2">
                           <TextInput
-                            label='Confirm Password'
-                            placeholder='Password'
-                            type='password'
+                            label="Confirm Password"
+                            placeholder="Password"
+                            type="password"
                             register={register("cPassword", {
                               validate: (value) => {
                                 const { password } = getValues();
@@ -245,30 +246,36 @@ const SignUp = ({ open, setOpen }) => {
 
                     {errMsg && (
                       <span
-                        role='alert'
-                        className='text-sm text-red-500 mt-0.5'
+                        role="alert"
+                        className="text-sm text-red-500 mt-0.5"
                       >
                         {errMsg}
                       </span>
                     )}
 
-                    <div className='mt-2'>
-                      <CustomButton
-                        type='submit'
-                        containerStyles={`inline-flex justify-center rounded-md bg-blue-600 px-8 py-2 text-sm font-medium text-white outline-none hover:bg-blue-800`}
-                        title={isRegister ? "Create Account" : "Login Account"}
-                      />
+                    <div className="mt-2">
+                      {isLoading ? (
+                        <Loading />
+                      ) : (
+                        <CustomButton
+                          type="submit"
+                          containerStyles={`inline-flex justify-center rounded-md bg-blue-600 px-8 py-2 text-sm font-medium text-white outline-none hover:bg-blue-800`}
+                          title={
+                            isRegister ? "Create Account" : "Login Account"
+                          }
+                        />
+                      )}
                     </div>
                   </form>
 
-                  <div className='mt-4'>
-                    <p className='text-sm text-gray-700'>
+                  <div className="mt-4">
+                    <p className="text-sm text-gray-700">
                       {isRegister
                         ? "Already has an account?"
                         : "Do not have an account"}
 
                       <span
-                        className='text-sm text-blue-600 ml-2 hover:text-blue-700 hover:font-semibold cursor-pointer'
+                        className="text-sm text-blue-600 ml-2 hover:text-blue-700 hover:font-semibold cursor-pointer"
                         onClick={() => setIsRegister((prev) => !prev)}
                       >
                         {isRegister ? "Login" : "Create Account"}
